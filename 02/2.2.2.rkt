@@ -1,5 +1,5 @@
 ;Q-2.28
-
+;力技
 (define (fringe x)
   (if (not (pair? x))
       x
@@ -8,11 +8,13 @@
 (define (fringe-x x y)
   (if(null? y)
      (if(pair? x)
-        (fringe-x (car x) (cdr x)))
+        (fringe-x (car x) (cdr x))
+        (cons x'())
+        )
      (if(pair? x)
        (fringe-x (car x) 
                  (if (null? (cdr x))
-                     y
+                     y 
                      (cons (cdr x) y)))
         (cons x (fringe-x (car y)(cdr y) )))))
           
@@ -54,6 +56,5 @@
      (let((rest (subsets(cdr s))))
       (append rest (map (lambda (a) (cons (car s) a)) rest)))))
  (subsets (list 1 2 3 ))
+ (subsets '())
 ;理由
-
-;Q-2.33
