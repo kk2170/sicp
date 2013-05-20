@@ -1,5 +1,30 @@
 ;Q-2.28
 
+(define (fringe x)
+  (if (not (pair? x))
+      x
+      (fringe-x (car x) (cdr x))))
+
+(define (fringe-x x y)
+  (if(null? y)
+     (if(pair? x)
+        (fringe-x (car x) (cdr x)))
+     (if(pair? x)
+       (fringe-x (car x) 
+                 (if (null? (cdr x))
+                     y
+                     (cons (cdr x) y)))
+        (cons x (fringe-x (car y)(cdr y) )))))
+          
+
+;(cons 1 (cons 2 ( cons 3 '())))
+(define x (list (list 1 2 ) (list 3 4)))
+;(car (list x x))
+;(fringe-r '() '())
+;(fringe-r (list x ) '())
+(fringe x)
+(fringe (list x x))
+
 ;Q-2.29
 
 ;Q-2.30
@@ -25,9 +50,10 @@
 ;Q-2.32
 (define (subsets s)
   (if(null? s)
-     (list )
+     (list '())
      (let((rest (subsets(cdr s))))
-       (append rest (map <??> rest)))))
+      (append rest (map (lambda (a) (cons (car s) a)) rest)))))
+ (subsets (list 1 2 3 ))
 ;理由
 
 ;Q-2.33
