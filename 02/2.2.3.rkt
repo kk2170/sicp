@@ -135,8 +135,19 @@
 (reverse-l (list 1 2 3 4))
 ;(4 3 2 1)
 
-
-
+;filter
+(define (filter predicate sequence)
+  (cond ((null? sequence )'())
+        ((predicate (car sequence))
+         (cons(car sequence)
+              (filter predicate (cdr sequence))))
+        (else (filter predicate (cdr sequence)))))
+;prime
+(define (prime? n)
+  (= n (smallest-divisor n)))
+;smallest-divisor
+(define (smallest-divisor n)
+  (find-divisor n 2))
 ;P71-72
 (define (flatmap proc seq)
         (accumulate append '() (map proc seq)))
@@ -163,7 +174,7 @@
   (filter (lambda (x)(not (= x item)))
           sequence))
   
-
+(prime-sum-pairs 10)
 
 ;Q2.40
 
