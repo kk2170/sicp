@@ -57,7 +57,7 @@
       (op (car sequence)
           (accumulate op initial (cdr sequence)))))
 
-
+;本の定義をそのまま
 (define (fold-left op initial sequence)
   (define (iter result rest)
     (if (null? rest)
@@ -66,21 +66,40 @@
               (cdr rest ))))
   (iter initial sequence))
 
+(fold-right / 1 (list 1  2 3 ))
 ;A3/2 約分までするとは恐るべし・・・
 ;右から順番に評価されてる2/3  1/ (2/3) = 1* (3/2)
-(fold-right / 1 (list 1  2 3 ))
 
+(fold-left / 1 (list 1 2 3 ))
 ;A 1/6
 ;左から順番に評価されてる(1/2)/3=1/6 
-(fold-left / 1 (list 1 2 3 ))
 
-
+(fold-right list '() (list 1 2 3 ))
 ;A(1 (2 (3 ())))
 ; 右から評価されてる
-(fold-right list '() (list 1 2 3 ))
 
+(fold-left list '() (list 1 2 3 ))
 ;A (((() 1) 2) 3)
 ;左から評価されてる
-(fold-left list '() (list 1 2 3 ))
+
 
 ;Q2.39
+
+; reverse-lと同じ発想だけどこれじゃだめ
+;(define (reverse-r sequence)
+;  (fold-right (lambda (x y)(list y x )) '() sequence))
+;(reverse-r (list 1 2 3 4))
+; 結果 ((((() 4) 3) 2) 1)
+; 後一手間いる
+(define (reverse-r sequence)
+  (fold-right (lambda (x y)(append y (cons x '()))) '() sequence))
+(reverse-r (list 1 2 3 4))
+
+
+
+;何となくconsでyとxを逆に繋げば良いと発想して作成
+(define (reverse-l sequence)
+  (fold-left (lambda (x y)(cons y x )) '() sequence))
+
+(reverse-l (list 1 2 3 4))
+;(4 3 2 1)
