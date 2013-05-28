@@ -48,7 +48,34 @@
 (accumulate-n + 0 s)
 
 ;Q2.37
+;今回の計算対象
+(define mx (list (list 1 2 3 4)(list 4 5 6 6)(list 6 7 8 9)))
+(define v (list 1 2 3 4))
 
+;各行列の点を計算してくれる
+(define (dot-product v w)
+  (accumulate + 0 (map * v w )))
+
+(define (matrix-*-vector m v)
+  (map (lambda(x)(dot-product x v))  m))
+
+(matrix-*-vector mx v )
+;A (30 56 80)
+;1+4+9+16=30  4+10+18+24=56  6+14+24+36=80
+
+(define (transpose mat)
+  (accumulate-n cons '()  mat))
+(transpose mx)
+;A ((1 4 6) (2 5 7) (3 6 8) (4 6 9))
+;((1 2 3 4)(4 5 6 6)(6 7 8 9))が
+;((1 4 6) (2 5 7 ) (3 6 8 ) (4 6 9 ))のようになれば良いので正解行列を書けばよく分かる
+
+(define (matrix-*-matrix m n)
+  (let ((cols (transpose n)))
+    (map (lambda(x)(matrix-*-vector cols x))m)))
+(matrix-*-matrix mx mx)
+;A ((27 33 39 43) (60 75 90 100) (82 103 124 138))
+;
 ;Q2.38
 ; accumulateをfold-rightとして宣言
 (define (fold-right op initial sequence)
