@@ -153,11 +153,7 @@
   (cond ((>(square test-divisor) n)n)
         ((divides? test-divisor n) test-divisor)
         (else (find-divisor n (+ test-divisor 1 )))))
-;divides?
-(define (divides? a b)
-  (=(remainder b a ) 0))
-;squre 
-(define (square x)(* x  x))
+
 ;P71-72
 (define (flatmap proc seq)
         (accumulate append '() (map proc seq)))
