@@ -148,6 +148,8 @@
 ;smallest-divisor
 (define (smallest-divisor n)
   (find-divisor n 2))
+;find-divisor 
+
 ;P71-72
 (define (flatmap proc seq)
         (accumulate append '() (map proc seq)))
