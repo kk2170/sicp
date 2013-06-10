@@ -35,10 +35,11 @@
 ;こちらは何も考えず逆につないだ結果、consの性質で発生した。
 ;Q.23
 (define (my-for-each x y)
-  (cond (null? y)
-      (x (car y))
-      (else(x (car y))(my-for-each x (cdr y)))))
+  (cond 
+    ((null? y)(#t)
+    (else(x (car y))(my-for-each x (cdr y)))))
 (my-for-each (lambda (x ) (newline) (display x))(list  57 321 88))
+(my-for-each (lambda (x ) (newline) (display x))'())
 
 ;Q2.24
 
@@ -94,6 +95,10 @@
 
 ;Q-2.29
 ;A carとcadrで取れる
+(define (left-branch mobile)
+  (car mobile))
+(define (right-branch mobile)
+  (cadr mobile))
 ;B 
 (define (total-weight mobile)
   (if (list? mobile)
