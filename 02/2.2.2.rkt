@@ -36,7 +36,7 @@
 ;Q.23
 (define (my-for-each x y)
   (cond 
-    ((null? y)(#t)
+    ((null? y)#t)
     (else(x (car y))(my-for-each x (cdr y)))))
 (my-for-each (lambda (x ) (newline) (display x))(list  57 321 88))
 (my-for-each (lambda (x ) (newline) (display x))'())
@@ -54,6 +54,10 @@
 (append x y)
 (cons x y)
 (list x y)
+
+;(1 2 3 4 5 6)
+;((1 2 3) 4 5 6)
+;((1 2 3) (4 5 6))
 
 ;Q2.27
 (define (deep-reverse x)
