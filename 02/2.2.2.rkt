@@ -63,11 +63,9 @@
 (define (deep-reverse x)
   (cond
     ((null? x) x)
-    ((list? (car x))(append (deep-reverse(cdr x))(deep-reverse(car x))))
-    (else  (list(reverse x)))
-    )
-  )
-(deep-reverse (list (list 1 2 ) (list 3 4)))
+    ((list? (car x))(list(append (deep-reverse(cdr x)))(list(deep-reverse(car x)))))
+    (else  (reverse x))) )
+(deep-reverse (list 1 2))
 ;Q-2.28
 ;力技
 (define (fringe x)
