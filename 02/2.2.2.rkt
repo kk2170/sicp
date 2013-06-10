@@ -95,7 +95,18 @@
 ;Q-2.29
 ;A carとcadrで取れる
 ;B 
+(define (total-weight mobile)
+  (if (list? mobile)
+      (+(total-weight (car mobile) )(total-weight (cadr mobile)))
+      mobile))
 ;C
+(define (balance mobile)
+ (if (=(total-weight (car mobile))(total-weight (cadr mobile)))
+     (if (list? mobile)
+         (and (blance (car mobile))(balance(cdr mobile)))
+         #t)
+     #f))
+         
 ;D 変更必要ない
 ;Q-2.30
 (define (square-tree x)
