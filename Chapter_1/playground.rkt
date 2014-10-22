@@ -1,0 +1,13 @@
+(define (square a) (* a a))
+(define (sum-of-squre-bigger-two-variable a b c)
+  (cond ((and (> a b)(> c b))(+ (square a)(square c)))
+        ((and (> a c)(> b c))(+ (square a)(square b)))
+        ((and (> b a)(> c a))(+ (square b)(square c)))
+        ))
+(define (a-plus-abs-b a b)
+  ((if (> b 0) + -) a b))
+(define (p) (p))
+(define (test x y)
+  (if (= 0 x)
+      0
+      y))
